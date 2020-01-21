@@ -1,10 +1,9 @@
 <center style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</center>
-
 - **sHUD.new()**
 
   创建一个 **sF_HUD** 对象：
 
-  **Number** `id` -> 玩家id
+  **Number** `ID` -> 玩家id
 
   **String** `text` -> 文本 *默认值为空字符串*
 
@@ -141,7 +140,6 @@
   ```
 
 <center style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">补充</center>
-
 - 对齐模式：
 
   - 水平对齐：

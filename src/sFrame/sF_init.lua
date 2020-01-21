@@ -1,6 +1,3 @@
--- load utf-8 lib § 导入utf-8库
-dofile('sys/lua/utf8.lua')
-
 -- define "Range" function to assign a value to the table § 定义"Range"函数来为表赋值
 function Range(v1, v2, sep)
 	sep = sep or 1
@@ -116,3 +113,6 @@ SET =
 		end
 	}
 )
+
+-- load utf-8 lib § 导入utf-8库
+import('utf8')

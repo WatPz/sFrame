@@ -62,6 +62,9 @@ function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 
 	function o:show(hAlpha)
 		parse('hudtxt2', ID, HUD_ID, '"' .. text .. '"', x, y, hAlign, vAlign, size)
+
+		o:setAlpha()
+		o:setColor()
 	end
 
 	function o:hide()
@@ -102,32 +105,27 @@ function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 		self:show()
 	end
 
-	function o:setAlpha(hAlpha, duration)
+	function o:setAlpha(hAlpha)
 		alpha = tonumber(hAlpha) or alpha
-		duration = duration or 0
 
-		parse('hudtxtalphafade', ID, HUD_ID, duration, alpha)
+		parse('hudtxtalphafade', ID, HUD_ID, 0, alpha)
 	end
 
-	function o:setColor(hColor, duration)
+	function o:setColor(hColor)
 		if type(hColor) == 'table' then
 			color.red = tonumber(hColor.red) or color.red
 			color.green = tonumber(hColor.green) or color.green
 			color.blue = tonumber(hColor.blue) or color.blue
 		end
 
-		duration = duration or 0
-
-		parse('hudtxtcolorfade', ID, HUD_ID, duration, color.red, color.green, color.blue)
+		parse('hudtxtcolorfade', ID, HUD_ID, 0, color.red, color.green, color.blue)
 	end
 
-	function o:setPos(hX, hY, duration)
+	function o:setPos(hX, hY)
 		x = tonumber(hX) or x
 		y = tonumber(hY) or y
 
-		duration = duration or 0
-
-		parse('hudtxtmove', ID, HUD_ID, duration, x, y)
+		parse('hudtxtmove', ID, HUD_ID, 0, x, y)
 	end
 
 	return o
