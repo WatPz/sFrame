@@ -1,13 +1,13 @@
 local sF_HUD = {}
 
-local IDs = Array(Range(0, getSET('maxHUD') - 1))
+local IDs = Array(Range(0, SET.maxHUD - 1))
 local used = Array(0)
 local function getRandomID(p)
-	if used[p] >= getSET('maxHUD') then
+	if used[p] >= SET.maxHUD then
 		return nil
 	end
 
-	local rID = math.random(1, getSET('maxHUD') - used[p])
+	local rID = math.random(1, SET.maxHUD - used[p])
 	local ID = IDs[p][rID]
 
 	table.remove(IDs[p], rID)

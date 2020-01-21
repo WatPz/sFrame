@@ -1,4 +1,4 @@
-<p align="center", style="font-size: 26px">sFrame - 让 Script 不再复杂</p>
+<p align="center", style="font-size: 26px; color: #64dcf5">sFrame - 让 Script 不再复杂</p>
 
 #### 文件树
 
@@ -23,4 +23,3 @@
   - **sFrame** 通过 *libs* 的形式，封装了大量 **API** ，同时添加了许多新功能
 
     *简化* 了原本 *繁琐* 的逻辑，*提高*  了编写效率
-
