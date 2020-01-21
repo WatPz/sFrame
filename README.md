@@ -1,4 +1,4 @@
-<center style="font-size: 26px; color: white">sFrame - 让 Script 不再复杂</center>
+<p align="center", style="font-size: 26px">sFrame - 让 Script 不再复杂</p>
 
 #### 文件树
 
