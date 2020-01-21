@@ -105,12 +105,10 @@
 
   （0.0 ~ 1.0 对应 0% ~ 100%）
 
-  **Number** <u>ms</u> duration-> 改变透明度时的渐变时间（不为 **Number** 时无渐变时间）
-
   ```lua
-  o:setAlpha(hAlpha, duration)
+o:setAlpha(hAlpha)
   ```
-
+  
 - **o:setColor()**
 
   设置 **o** 的文本颜色
@@ -119,12 +117,10 @@
 
   （<u>文本颜色</u> 详见 *颜色*）
 
-  **Number** <u>ms</u> duration-> 改变透明度时的渐变时间（不为 **Number** 时无渐变时间）
-
   ```lua
-  o:setColor(hColor, duration)
+o:setColor(hColor)
   ```
-
+  
 - **o:setPos()**
 
   设置 **o** 的文本坐标
@@ -133,10 +129,8 @@
 
   **Number** hY-> y坐标（不为 **Number** 时不变）
 
-  **Number** <u>ms</u> duration-> 改变透明度时的渐变时间（不为 **Number** 时无渐变时间）
-
   ```lua
-  o:setPos(hX, hY, duration)
+o:setPos(hX, hY)
   ```
 
 <center style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">补充</center>
