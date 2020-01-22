@@ -106,9 +106,9 @@
   （0.0 ~ 1.0 对应 0% ~ 100%）
 
   ```lua
-o:setAlpha(hAlpha)
+  o:setAlpha(hAlpha)
   ```
-  
+
 - **o:setColor()**
 
   设置 **o** 的文本颜色
@@ -118,9 +118,9 @@ o:setAlpha(hAlpha)
   （<u>文本颜色</u> 详见 *颜色*）
 
   ```lua
-o:setColor(hColor)
+  o:setColor(hColor)
   ```
-  
+
 - **o:setPos()**
 
   设置 **o** 的文本坐标
