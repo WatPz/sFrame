@@ -1,21 +1,8 @@
 local sF_HUD = {}
 
-local IDs = Array(Range(0, SET.maxHUD - 1))
-local used = Array(0)
-local function getRandomID(p)
-	if used[p] >= SET.maxHUD then
-		return nil
-	end
+import('sF_IDs', 'sIDs')
 
-	local rID = math.random(1, SET.maxHUD - used[p])
-	local ID = IDs[p][rID]
-
-	table.remove(IDs[p], rID)
-
-	used[p] = used[p] + 1
-
-	return ID
-end
+local IDs = sIDs.new(0, SET.maxHUD - 1)
 
 function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 	local o = {}
@@ -40,7 +27,7 @@ function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 		return t
 	end
 
-	local HUD_ID = getRandomID(ID)
+	local HUD_ID = IDs:get(ID)
 
 	if not HUD_ID then
 		return nil
@@ -72,7 +59,7 @@ function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 	end
 
 	function o:free()
-		table.insert(IDs[ID], HUD_ID)
+		IDs:free(ID, HUD_ID)
 		o:hide()
 
 		o = nil

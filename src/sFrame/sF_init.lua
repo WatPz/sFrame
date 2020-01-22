@@ -1,4 +1,30 @@
--- define "Range" function to assign a value to the table § 定义"Range"函数来为表赋值
+-- 定义一个只读全局变量 "SET" ，用于在 "cfg/settings.cfg" 中加载数据 § defines a read-only global variable "SET" to load data in "cfg/settings.cfg"
+local settings = {}
+local f = io.open('sys/lua/sFrame/cfg/Settings.cfg')
+
+for l in f:lines() do
+	if l == '' or l:find('# (%w+)') then
+		break
+	end
+
+	local k, v = l:match('([%w_]+) (.+)')
+	settings[k] = tonumber(v) or v
+end
+
+SET =
+	setmetatable(
+	{},
+	{
+		__index = function(t, k)
+			return settings[k]
+		end,
+		__newindex = function()
+			return
+		end
+	}
+)
+
+-- 定义 "Range" 函数来为表赋值 § define "Range" function to assign a value to the table
 function Range(v1, v2, sep)
 	sep = sep or 1
 
@@ -10,7 +36,7 @@ function Range(v1, v2, sep)
 	return array
 end
 
--- 定义"Copy"函数来解决表引用问题 § Define the "copy" function to solve the table reference problem
+-- 定义 "Copy" 函数来解决表引用问题 § Define the "Copy" function to solve the table reference problem
 function Copy(org, res)
 	for k, v in pairs(org) do
 		if type(v) ~= 'table' then
@@ -25,7 +51,7 @@ end
 -- 定义 "Array" 函数来声明列表 § Define the "Array" function to declare the list
 function Array(value, max)
 	value = value or false
-	max = max or 32
+	max = max or SET.maxPlayers
 
 	local array = {}
 	if type(value) == 'table' then
@@ -71,7 +97,7 @@ function import(proJname, alias)
 	end
 end
 
--- Define the spairs iterator to return the strings in the table in order § 定义spairs迭代器按顺序返回表中的字符串
+-- 定义 "spairs" 迭代器按顺序返回表中的字符串 § Define the "spairs" iterator to return the strings in the table in order
 function spairs(t)
 	local a = {}
 
@@ -88,31 +114,5 @@ function spairs(t)
 	end
 end
 
--- defines a read-only global variable "SET" to load data in "cfg/settings.cfg" § ——定义一个只读全局变量"SET"，用于在"cfg/settings.cfg"中加载数据
-local settings = {}
-local f = io.open('sys/lua/sFrame/cfg/Settings.cfg')
-
-for l in f:lines() do
-	if l == '' or l:find('# (%w+)') then
-		break
-	end
-
-	local k, v = l:match('([%w_]+) (.+)')
-	settings[k] = tonumber(v) or v
-end
-
-SET =
-	setmetatable(
-	{},
-	{
-		__index = function(t, k)
-			return settings[k]
-		end,
-		__newindex = function()
-			return
-		end
-	}
-)
-
--- load utf-8 lib § 导入utf-8库
+-- 导入 "utf-8" 库 § load "utf-8" lib
 import('utf8')
