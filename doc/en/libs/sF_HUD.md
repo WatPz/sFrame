@@ -1,5 +1,4 @@
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
-
 - **sHUD.new()**
 
   Create a **sF_HUD** object:
@@ -32,6 +31,8 @@
   local o = sHUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
   ```
 
+  [ **return** ] : Return The Object **o**
+
 - **o:show()**
 
   Displays the text of **o**
@@ -40,6 +41,8 @@
   o:show()
   ```
 
+  [ **return** ] : **nil**
+
 - **o:hide()**
 
   Hide the text of **o**
@@ -47,6 +50,8 @@
   ```lua
   o:hide()
   ```
+
+  [ **return** ] : **nil**
 
 - **o:free()**
 
@@ -58,6 +63,8 @@
   o:free()
   ```
 
+  [ **return** ] : **nil**
+
 - **o:setText()**
 
   Set the text of **o**
@@ -67,6 +74,8 @@
   ```lua
   o:setText(hText)
   ```
+
+  [ **return** ] : **nil**
 
 - **o:setHAlign()**
 
@@ -78,6 +87,8 @@
   o:setHAlign(align)
   ```
 
+  [ **return** ] : **nil**
+
 - **o:setVAlign()**
 
   Set the vertical alignment mode of **o**
@@ -88,6 +99,8 @@
   o:setVAlign(align)
   ```
 
+  [ **return** ] : **nil**
+
 - **o:setSize()**
 
   Set the text size of **o**
@@ -97,6 +110,8 @@
   ```lua
   o:setSize(hSize)
   ```
+
+  [ **return** ] : **nil**
 
 - **o:setAlpha()**
 
@@ -110,6 +125,8 @@
   o:setAlpha(hAlpha)
   ```
 
+  [ **return** ] : **nil**
+
 - **o:setColor()**
 
   Set the text color of **o**
@@ -121,6 +138,8 @@
   ```lua
   o:setColor(hColor)
   ```
+
+  [ **return** ] : **nil**
 
 - **o:setPos()**
 
@@ -134,8 +153,9 @@
   o:setPos(hX, hY)
   ```
 
-<p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">Supplement</p>
+  [ **return** ] : **nil**
 
+<p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">Supplement</p>
 - Alignment Mode：
 
   - Horizontal alignment：

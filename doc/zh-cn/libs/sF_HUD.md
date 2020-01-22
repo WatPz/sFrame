@@ -1,5 +1,4 @@
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
-
 - **sHUD.new()**
 
   创建一个 **sF_HUD** 对象：
@@ -31,6 +30,8 @@
   ```lua
   local o = sHUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
   ```
+  
+  [ **return** ] : 返回对象 **o**
 
 - **o:show()**
 
@@ -39,6 +40,8 @@
   ```lua
   o:show()
   ```
+  
+  [ **return** ] : **nil**
 
 - **o:hide()**
 
@@ -47,6 +50,8 @@
   ```lua
   o:hide()
   ```
+
+  [ **return** ] : **nil**
 
 - **o:free()**
 
@@ -58,6 +63,8 @@
   o:free()
   ```
 
+  [ **return** ] : **nil**
+
 - **o:setText()**
 
   设置 **o** 的文本
@@ -67,6 +74,8 @@
   ```lua
   o:setText(hText)
   ```
+
+  [ **return** ] : **nil**
 
 - **o:setHAlign()**
 
@@ -78,6 +87,8 @@
   o:setHAlign(align)
   ```
 
+  [ **return** ] : **nil**
+
 - **o:setVAlign()**
 
   设置 **o** 的垂直对齐模式
@@ -88,6 +99,8 @@
   o:setVAlign(align)
   ```
 
+  [ **return** ] : **nil**
+
 - **o:setSize()**
 
   设置 **o** 的文本大小
@@ -97,6 +110,8 @@
   ```lua
   o:setSize(hSize)
   ```
+
+  [ **return** ] : **nil**
 
 - **o:setAlpha()**
 
@@ -110,6 +125,8 @@
   o:setAlpha(hAlpha)
   ```
 
+  [ **return** ] : **nil**
+
 - **o:setColor()**
 
   设置 **o** 的文本颜色
@@ -122,6 +139,8 @@
   o:setColor(hColor)
   ```
 
+  [ **return** ] : **nil**
+
 - **o:setPos()**
 
   设置 **o** 的文本坐标
@@ -133,9 +152,10 @@
   ```lua
   o:setPos(hX, hY)
   ```
+  
+  [ **return** ] : **nil**
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">补充</p>
-
 - 对齐模式：
 
   - 水平对齐：
