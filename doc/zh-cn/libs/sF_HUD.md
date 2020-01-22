@@ -1,4 +1,4 @@
-<center style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</center>
+<p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
 - **sHUD.new()**
 
   创建一个 **sF_HUD** 对象：
@@ -130,10 +130,10 @@
   **Number** hY-> y坐标（不为 **Number** 时不变）
 
   ```lua
-o:setPos(hX, hY)
+  o:setPos(hX, hY)
   ```
 
-<center style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">补充</center>
+<p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">补充</p>
 - 对齐模式：
 
   - 水平对齐：
