@@ -94,7 +94,7 @@
   ( count backwards if it's a <u>negative</u> number )
 
   ```lua
-  o:getButton(pos)
+  local bObj = o:getButton(pos)
   ```
 
   [ **return** ] : The Object **bObj**

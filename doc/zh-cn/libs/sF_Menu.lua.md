@@ -94,7 +94,7 @@
   （ 为 <u>负数</u> 时，从后往前数 ）
 
   ```lua
-  o:getButton(pos)
+  local bObj = o:getButton(pos)
   ```
 
   [ **return** ] : 返回对象 **bObj**
