@@ -5,6 +5,10 @@
 
   **Number** `ID` -> 玩家id
 
+  （ 如果为 **nil** ，那么返回一个1~32索引都为 **sF_HUD** 对象的 **Table** ）
+
+  （ 如果为 **Table** ，那么返回 `ID` 中所有 <u>数字</u> <u>对应</u> 索引都为 **sF_HUD** 对象的 **Table** ）
+
   **String** `text` -> 文本 *默认值为空字符串*
 
   **Number** `x` -> x坐标 *默认值为玩家屏幕宽度一半*
@@ -29,9 +33,19 @@
 
   ```lua
   local o = sHUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
+
+  -- Example --
+  local one = sHUD.new(2, "Player 2 can see this message!")
+  one:show()
+
+  local all = sHUD.new(nil, "You all can see this message!")
+  all:show()
+
+  local some = sHUD.new({1, 9, 26}, "Players 1, 9 and 26 can see this message!")
+  some:show()
   ```
-  
-  [ **return** ] : 返回对象 **o**
+
+  [ **return** ] : 对象 **o**
 
 - **o:show()**
 
@@ -40,7 +54,7 @@
   ```lua
   o:show()
   ```
-  
+
   [ **return** ] : **nil**
 
 - **o:hide()**
@@ -152,7 +166,7 @@
   ```lua
   o:setPos(hX, hY)
   ```
-  
+
   [ **return** ] : **nil**
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">补充</p>
@@ -181,3 +195,16 @@
   [ **Key** `green` -> 绿色值 *默认值为255* ]
 
   [ **Key** `blue` -> 蓝色值 *默认值为255* ]
+
+<p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">例子</p>
+- 创建一个针对玩家 1 的 **sF_HUD** 对象
+
+  并修改它的颜色和字体大小
+
+  ```lua
+  local HUD = sHUD.new(1, "Hello, Player 1!")
+  -- set the color to white
+  HUD:setColor({red = 255, green = 255, blue = 255})
+  -- set the size to 29
+  HUD:setSize(29)
+  ```

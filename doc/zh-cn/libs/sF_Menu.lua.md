@@ -1,0 +1,205 @@
+<p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
+- **sMenu.new()**
+
+  创建一个 **sF_Menu** 对象：
+
+  **String** `tName` -> 菜单标题
+
+  （ 如果不为 **String** 或 <u>为空</u> ，返回 **nil, 1** ）
+
+  （ 如果 <u>标题</u> 已经 <u>被使用</u> ，返回 **nil, 2** ）
+
+  **Boolean** `BIG` -> 设置为大菜单
+
+  （ 如果不为 **Boolean** ， 返回 **nil, 3**）
+
+  ```lua
+  local o = sMenu.new(tName)
+  ```
+
+  [ **return** ] : 对象 **o** （特殊情况如上）
+
+- **sMenu.getButtonStr()**
+
+  获取一个菜单的格式化字符串
+
+  **String** `tName` -> 菜单标题
+
+  **Number** `p` -> 玩家ID
+
+  （任意参数 <u>类型不对</u> 时，返回 **nil** ）
+
+  ```lua
+  sF_Menu.getButtonStr(tName, p)
+  ```
+
+  [ **return** ] : **String**
+  
+- **o:setBIG()**
+
+  设置 **o** 菜单的 大菜单模式
+
+  **Boolean** `mBIG` -> 是否开启大菜单模式
+
+  （ 不为 **Boolean** 时，不变）
+
+  ```lua
+  o:setBIG(mBIG)
+  ```
+
+  [ **return** ] : **nil**
+
+- **o:insertButton()**
+
+  在 **o** 菜单中插入一个按钮
+
+  **String** `bName` -> 按钮名字
+
+  **Function / Boolean** `bSupplement` -> 按钮补充（ 为 **Function** 时，传入参数 **玩家ID** ）
+
+  **Function / Boolean** `bEnable` -> 按钮状态（ 为 **Function** 时，传入参数 **玩家ID** ）
+
+  **Number** `pos` -> 插入的位置 *默认为末尾*
+
+  （ 为 <u>负数</u> 时，从后往前数 ）
+
+  （ 任意参数 <u>类型不对</u> 时，不会插入按钮 ）
+
+  ```lua
+  o:insertButton(bName, bSupplement, bEnable)
+  ```
+
+  [ **return** ] : **nil**
+
+- **o:removeButton()**
+
+  在 **o** 菜单中移除一个按钮
+
+  **Number** `pos` -> 按钮位置
+
+  （ 为 <u>负数</u> 时，从后往前数 ）
+
+  ```lua
+  o:removeButton(pos)
+  ```
+
+  [ **return** ] : **nil**
+
+- **o:getButton()**
+
+  获取 **o** 菜单中的一个按钮
+
+  **Number** `pos` -> 按钮位置
+
+  （ 为 <u>负数</u> 时，从后往前数 ）
+
+  ```lua
+  o:getButton(pos)
+  ```
+
+  [ **return** ] : 返回对象 **bObj**
+
+- **o:show()**
+
+  将 **o** 菜单展示给一个玩家看
+
+  **Number** `p` -> 玩家ID
+
+  ```lua
+  o:show(p)
+  ```
+  
+  [ **return** ] : **nil**
+
+- **bObj:getName()**
+
+  获取 **bObj** 按钮的名称
+
+  ```lua
+  bObj:getName()
+  ```
+
+  [ **return** ] : **String**
+
+- **bObj:setName()**
+
+  设置 **bObj** 按钮的名称
+
+  **String** `bName` -> 按钮名称
+  
+  （ 不为 **String** 或 <u>为空</u> 时不变 ）
+
+  ```lua
+  bObj:setName(bName)
+  ```
+  
+  [ **return** ] : **nil**
+
+- **bObj:getSupplement()**
+
+  获取 **bObj** 按钮的补充和 <u>类型</u>（ **Function / Boolean** ）
+
+  ```lua
+  bObj:getSupplement()
+  ```
+
+  [ **return** ] : **String, String**
+
+- **bObj:setSupplement()**
+
+  设置 **bObj** 按钮的补充
+
+  **Function / Boolean** `bSupplement` -> 按钮补充
+  
+  （ 不为 **Function** 或 **Boolean** 时不变 ）
+
+  ```lua
+  bObj:setSupplement(bSupplement)
+  ```
+  
+  [ **return** ] : **nil**
+
+- **bObj:getEnable()**
+
+  获取 **bObj** 按钮的状态和 <u>类型</u>（ **Function / Boolean** ）
+
+  ```lua
+  bObj:getEnable()
+  ```
+
+  [ **return** ] : **String, String**
+
+- **bObj:setEnable()**
+
+  设置 **bObj** 按钮的状态
+
+  **Function / Boolean** `bsupplement` -> 按钮状态
+  
+  （ 不为 **Function** 或 **Boolean** 时不变 ）
+
+  ```lua
+  bObj:setEnable(bEnable)
+  ```
+  
+  [ **return** ] : **nil**
+
+<p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">例子</p>
+- 创建一个主菜单
+
+  并设置 <u>b1</u> ， <u>b2</u> 和 <u>b3</u> 三个按钮
+
+  ```lua
+  local MainMenu = sMenu.new("Main Menu")
+  MainMenu:insertButton("b1")
+  MainMenu:insertButton("b2")
+  MainMenu:insertButton("b3")
+  ```
+  
+- 获取主菜单的倒数第一个按钮，并修改它的 <u>名称</u> 、 <u>补充</u> 和 <u>状态</u>
+
+  ```lua
+  local bObj = getButton(-1)
+  bObj:setName("B3")
+  bObj:setSupplement("Cant choose")
+  bObj:setEnable(false)
+  ```

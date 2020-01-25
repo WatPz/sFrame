@@ -26,7 +26,7 @@
   ```lua
   o:get(i)
   ```
-  
+
   [ **return** ] : 一个独立ID（ 超出上限时返回 **nil** ）
 
 - **o:free()**
@@ -36,7 +36,7 @@
   **Number** `i` -> 副本的ID
 
   **Number** `ID` -> 要释放的独立ID
-  
+
   ```lua
   o:free(i, ID)
   ```
@@ -55,8 +55,5 @@
   ```lua
   local ID = IDs:get(1)
   -- some code
-IDs:free(1, ID)
+  IDs:free(1, ID)
   ```
-
-
-
