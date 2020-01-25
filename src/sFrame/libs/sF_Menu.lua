@@ -21,20 +21,39 @@ function sF_Menu.getButtonStr(tName, p)
 	local endPage = title.page[p] * 7
 	local startPage = endPage - 6
 
-	for i = startPage, math.min(endPage, #title.buttons % 7) do
+	for i = startPage, endPage do
 		local t = title.buttons[i]
-		local s = t.name
 
-		if t.supplement then
-			s = s .. '|' .. (type(t.supplement) == 'function' and t.supplement(p) or t.supplement)
+		if t then
+			local s = t.name
+
+			if t.supplement then
+				s = s .. '|' .. (type(t.supplement) == 'function' and t.supplement(p) or t.supplement)
+			end
+
+			if (type(t.enable) == 'function' and not t.enable(p)) or (type(t.enable) == 'boolean' and not t.enable) then
+				s = '(' .. s .. ')'
+			end
+
+			table.insert(bNames, s)
+		else
+			table.insert(bNames, '()')
 		end
-
-		if (type(t.enable) == 'function' and not t.enable(p)) or (type(t.enable) == 'boolean' and not t.enable) then
-			s = '(' .. s .. ')'
-		end
-
-		table.insert(bNames, s)
 	end
+
+	local pageUp = '<--|Page Up'
+	local pageDown = '-->|Page Down'
+
+	if title.page[p] == 1 then
+		pageUp = '(' .. pageUp .. ')'
+	end
+
+	if title.page[p] * 7 >= #title.buttons then
+		pageDown = '(' .. pageDown .. ')'
+	end
+
+	table.insert(bNames, pageUp)
+	table.insert(bNames, pageDown)
 
 	str = str .. table.concat(bNames, ',')
 
@@ -48,7 +67,10 @@ function sF_Menu.hook.menu(p, tName, b)
 				t.page[p] = t.page[p] - 1
 			elseif b == 9 then
 				t.page[p] = t.page[p] + 1
-			elseif b ~= 0 then
+			end
+
+			if b ~= 0 then
+				titles[tName].buttons[b].trigger(p)
 				menu(p, sF_Menu.getButtonStr(tName, p))
 			end
 
@@ -62,7 +84,7 @@ function sF_Menu.new(tName, BIG)
 		return nil, 1
 	end
 
-	if type(BIG) ~= 'boolean' and type(BIG) ~= 'nil' then
+	if type(BIG) ~= 'boolean' and BIG ~= nil then
 		return nil, 3
 	end
 
@@ -86,15 +108,19 @@ function sF_Menu.new(tName, BIG)
 	local title = titles[tName]
 
 	function o:setBIG(mBIG)
-		if type(mBIG) ~= 'boolean' and type(mBIG) ~= 'nil' then
+		if type(mBIG) ~= 'boolean' and mBIG ~= nil then
 			return
 		end
 
 		titles[tName].BIG = mBIG
 	end
 
-	function o:insertButton(bName, bSupplement, bEnable, pos)
+	function o:insertButton(bName, bTrigger, bSupplement, bEnable, bPos)
 		if type(bName) ~= 'string' or bName == '' then
+			return
+		end
+
+		if type(bTrigger) ~= 'function' and bTrigger ~= nil then
 			return
 		end
 
@@ -102,11 +128,11 @@ function sF_Menu.new(tName, BIG)
 			return
 		end
 
-		if type(bEnable) ~= 'function' and type(bEnable) ~= 'boolean' and type(bEnable) ~= 'nil' then
+		if type(bEnable) ~= 'function' and type(bEnable) ~= 'boolean' and bEnable ~= nil then
 			return
 		end
 
-		if type(pos) ~= 'number' and pos ~= nil then
+		if type(bPos) ~= 'number' and bPos ~= nil then
 			return
 		end
 
@@ -114,16 +140,17 @@ function sF_Menu.new(tName, BIG)
 
 		local b = {
 			name = bName,
+			trigger = bTrigger,
 			supplement = bSupplement,
 			enable = bEnable
 		}
 
-		if pos then
-			if pos < 0 then
-				pos = len + pos + 1
+		if bPos then
+			if bPos < 0 then
+				bPos = len + bPos + 1
 			end
 
-			table.insert(title.buttons, pos, b)
+			table.insert(title.buttons, bPos, b)
 		else
 			table.insert(title.buttons, b)
 		end
