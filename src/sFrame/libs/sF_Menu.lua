@@ -195,6 +195,18 @@ function sF_Menu.new(tName, BIG)
 			b.name = bName or b.name
 		end
 
+		function bObj:getTrigger()
+			return b.trigger
+		end
+
+		function bObj:setTrigger(bTrigger)
+			if type(bTrigger) ~= 'function' and bTrigger ~= nil then
+				return
+			end
+
+			b.trigger = bTrigger or b.trigger
+		end
+
 		function bObj:getSupplement()
 			return b.supplement, type(b.supplement)
 		end
