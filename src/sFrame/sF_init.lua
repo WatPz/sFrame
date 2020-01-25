@@ -97,7 +97,7 @@ function import(proJname, alias)
 
 	if type(_G[name]) == 'table' and type(_G[name].hook) == 'table' then
 		for funcName in pairs(_G[name].hook) do
-			addhook(funcName, '_G.' .. name .. '.hook.' .. funcName)
+			addhook(funcName, name .. '.hook.' .. funcName)
 		end
 	end
 end
