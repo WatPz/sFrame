@@ -1,15 +1,20 @@
 -- 定义一个只读全局变量 "SET" ，用于在 "cfg/settings.cfg" 中加载数据 § defines a read-only global variable "SET" to load data in "cfg/settings.cfg"
 local settings = {}
-local f = io.open('sys/lua/sFrame/cfg/Settings.cfg')
 
-for l in f:lines() do
-	if l == '' or l:find('# (%w+)') then
-		break
+function loadCFG(fileName)
+	local f = io.open('sys/lua/sFrame/cfg/' .. fileName .. '.cfg')
+
+	for l in f:lines() do
+		if l == '' or l:find('# (%w+)') then
+			break
+		end
+
+		local k, v = l:match('([%w_]+) (.+)')
+		settings[k] = tonumber(v) or v
 	end
-
-	local k, v = l:match('([%w_]+) (.+)')
-	settings[k] = tonumber(v) or v
 end
+
+loadCFG('Settings')
 
 SET =
 	setmetatable(
