@@ -29,9 +29,9 @@ local function utf8charbytes(s, i)
 	if c > 0 and c <= 127 then
 		-- UTF8-1
 		return 1
-	elseif c == 0xA9 then -- ©
+	elseif c == 0xA9 then -- Â©
 		return 1
-	elseif c == 0xAE then -- ®
+	elseif c == 0xAE then -- Â®
 		return 1
 	elseif c == 0x7C then -- |
 		return 1
@@ -263,12 +263,12 @@ end
 
 local _msg = msg
 function msg(...)
-	return _msg(utf8.convert('©255255255' .. table.concat({...}, '')))
+	return _msg(utf8.convert('Â©255255255' .. table.concat({...}, '')))
 end
 
 local _msg2 = msg2
 function msg2(id, ...)
-	return _msg2(id, utf8.convert('©255255255' .. table.concat({...}, '')))
+	return _msg2(id, utf8.convert('Â©255255255' .. table.concat({...}, '')))
 end
 
 local _concat = table.concat

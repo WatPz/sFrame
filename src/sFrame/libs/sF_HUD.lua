@@ -30,7 +30,7 @@ function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 	local HUD_ID = IDs:get(ID)
 
 	if not HUD_ID then
-		return nil
+		return
 	end
 
 	text = text or ''

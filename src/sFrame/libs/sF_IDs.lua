@@ -3,7 +3,7 @@ local sF_IDs = {}
 function sF_IDs.new(nStart, nEnd, count)
 	local o = {}
 
-	if type(nStart) ~= 'number' or type(nEnd) ~= 'number' or type(count) ~= "number" then
+	if type(nStart) ~= 'number' or type(nEnd) ~= 'number' or type(count) ~= 'number' then
 		return nil
 	end
 
@@ -12,7 +12,7 @@ function sF_IDs.new(nStart, nEnd, count)
 	local max = nEnd - nStart + 1
 
 	function o:get(i)
-		if used[i] >= max or type(i) ~= "number" then
+		if used[i] >= max or type(i) ~= 'number' then
 			return nil
 		end
 
