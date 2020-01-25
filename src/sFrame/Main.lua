@@ -3,3 +3,4 @@ dofile('sys/lua/sFrame/sF_init.lua')
 
 -- import some packages § 导入一些包
 import('sF_HUD', 'sHUD')
+import('sF_Menu', 'sMenu')
