@@ -55,6 +55,8 @@
 
   **String** `bName` -> 按钮名字
 
+  **Function** `bTrigger` -> 按钮触发函数（传入参数 **玩家ID** ）
+
   **Function / Boolean** `bSupplement` -> 按钮补充（ 为 **Function** 时，传入参数 **玩家ID** ）
 
   **Function / Boolean** `bEnable` -> 按钮状态（ 为 **Function** 时，传入参数 **玩家ID** ）
@@ -66,7 +68,7 @@
   （ 任意参数 <u>类型不对</u> 时，不会插入按钮 ）
 
   ```lua
-  o:insertButton(bName, bSupplement, bEnable)
+  o:insertButton(bName, bTrigger, bSupplement, bEnable, bPos)
   ```
 
   [ **return** ] : **nil**
@@ -131,6 +133,30 @@
 
   ```lua
   bObj:setName(bName)
+  ```
+  
+  [ **return** ] : **nil**
+
+- **bObj:getTrigger()**
+
+  获取 **bObj** 按钮的触发函数
+
+  ```lua
+  bObj:getTrigger()
+  ```
+
+  [ **return** ] : **String, String**
+
+- **bObj:setTrigger()**
+
+  设置 **bObj** 按钮的触发函数
+
+  **Function** `bTrigger` -> 按钮触发函数
+  
+  （ 不为 **Function** 时不变 ）
+
+  ```lua
+  bObj:setTrigger(bTrigger)
   ```
   
   [ **return** ] : **nil**

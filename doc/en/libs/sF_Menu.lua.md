@@ -55,6 +55,8 @@
 
   **String** `bName` -> The button name
 
+  **Function** `bTrigger` -> The button trigger function ( pass in the parameter **Player ID** )
+
   **Function / Boolean** `bSupplement` -> The button supplement ( When **Function**, pass in the parameter **Player ID** )
 
   **Function / Boolean** `bEnable` -> The button state ( When **Function**, pass in the parameter **Player ID** )
@@ -66,7 +68,7 @@
   ( won't insert if any parameter <u>is of the wrong type</u> )
 
   ```lua
-  o:insertButton(bName, bSupplement, bEnable)
+  o:insertButton(bName, bTrigger, bSupplement, bEnable, bPos)
   ```
 
   [ **return** ] : **nil**
@@ -131,6 +133,30 @@
 
   ```lua
   bObj:setName(bName)
+  ```
+
+  [ **return** ] : **nil**
+
+- **bObj:getTrigger()**
+
+  Get the trigger function of the **bObj** button
+
+  ```lua
+  bObj:getTrigger()
+  ```
+
+  [ **return** ] : **String, String**
+
+- **bObj:setTrigger()**
+
+  Set the trigger function of the **bObj** button
+
+  **Function** `bTrigger` -> The button trigger function
+
+  ( It doesn't change if not **Function** )
+
+  ```lua
+  bObj:setTrigger(bTrigger)
   ```
 
   [ **return** ] : **nil**
