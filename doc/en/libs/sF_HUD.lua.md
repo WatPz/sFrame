@@ -5,6 +5,10 @@
 
   **Number** `ID` -> The player id
 
+  ( If **nil** , return a **Table** that index 1 to 32 is **sF_HUD** object )
+
+  ( If **Table** , the index <u>corresponding</u> to all the <u>numbers</u> in the return table is a table of **sF_HUD** object )
+
   **String** `text` -> The text *defaults to an empty string*
 
   **Number** `x` -> The y coordinate *defaults to half the width of the player's screen*
@@ -29,9 +33,19 @@
 
   ```lua
   local o = sHUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
+
+  -- Example --
+  local one = sHUD.new(2, "Player 2 can see this message!")
+  one:show()
+
+  local all = sHUD.new(nil, "You all can see this message!")
+  all:show()
+
+  local some = sHUD.new({1, 9, 26}, "Players 1, 9 and 26 can see this message!")
+  some:show()
   ```
 
-  [ **return** ] : Return The Object **o**
+  [ **return** ] : The Object **o**
 
 - **o:show()**
 
@@ -181,3 +195,17 @@
   [ **Key** `green` -> The green value *defaults to 255* ]
 
   [ **Key** `blue` -> The blue value *defaults to 255* ]
+
+<p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">Example</p>
+
+- Create an **sF_HUD** object for player 1
+
+  And change its color and font size
+
+  ```lua
+  local HUD = sHUD.new(1, "Hello, Player 1!")
+  -- set the color to white
+  HUD:setColor({red = 255, green = 255, blue = 255})
+  -- set the size to 29
+  HUD:setSize(29)
+  ```
