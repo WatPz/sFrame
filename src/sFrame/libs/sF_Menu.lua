@@ -136,7 +136,7 @@ function sF_Menu.new(tName, BIG)
 			return
 		end
 
-		bEnable = (bEnable ~= nil and bEnable or true)
+		bEnable = (bEnable == nil and true or bEnable)
 
 		local b = {
 			name = bName,
