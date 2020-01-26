@@ -14,7 +14,7 @@
   （ 如果不为 **Boolean** ， 返回 **nil, 3**）
 
   ```lua
-  local o = sMenu.new(tName)
+  local o = sMenu.new(tName, BIG)
   ```
 
   [ **return** ] : 对象 **o** （特殊情况如上）
@@ -217,15 +217,24 @@
   ```lua
   local MainMenu = sMenu.new("Main Menu")
   MainMenu:insertButton("b1")
-  MainMenu:insertButton("b2")
-  MainMenu:insertButton("b3")
+  -- It has supplementary content
+  MainMenu:insertButton("b2", "a button")
+  -- It can not click and no supplementary content
+  MainMenu:insertButton("b3", nil, false)
   ```
   
 - 获取主菜单的倒数第一个按钮，并修改它的 <u>名称</u> 、 <u>补充</u> 和 <u>状态</u>
 
+  当有人点击这个按钮时，触发 **tell** 函数
+
   ```lua
+  function tell(p)
+  	msg("Player " .. p .. " pressed button!")
+  end
+  
   local bObj = getButton(-1)
   bObj:setName("B3")
-  bObj:setSupplement("Cant choose")
-  bObj:setEnable(false)
+  bObj:setSupplement("Will be broadcast")
+  bObj:setEnable(true)
+  bObj:setTrigger(tell)
   ```

@@ -201,10 +201,14 @@
 
   并修改它的颜色和字体大小
 
+  最后展示给玩家
+  
   ```lua
   local HUD = sHUD.new(1, "Hello, Player 1!")
   -- set the color to white
   HUD:setColor({red = 255, green = 255, blue = 255})
   -- set the size to 29
   HUD:setSize(29)
+  -- show the text to the player 1
+  HUD:show()
   ```

@@ -14,7 +14,7 @@
   ( return **nil, 3** if not **String** )
 
   ```lua
-  local o = sMenu.new(tName)
+  local o = sMenu.new(tName, BIG)
   ```
 
   [ **return** ] : The Object **o** ( special case above )
@@ -217,15 +217,24 @@
   ```lua
   local MainMenu = sMenu.new("Main Menu")
   MainMenu:insertButton("b1")
-  MainMenu:insertButton("b2")
-  MainMenu:insertButton("b3")
+  -- It has supplementary content
+  MainMenu:insertButton("b2", "a button")
+  -- It can not click and no supplementary content
+  MainMenu:insertButton("b3", nil, false)
   ```
 
 - Get the last button of the main menu and change its <u>name</u> , <u>supplement</u> and <u>status</u>
 
+  When someone clicks this button, it will trigger the **tell** function
+
   ```lua
+  function tell(p)
+  	msg("Player " .. p .. " pressed button!")
+  end
+  
   local bObj = getButton(-1)
   bObj:setName("B3")
-  bObj:setSupplement("Cant choose")
-  bObj:setEnable(false)
+  bObj:setSupplement("Will be broadcast")
+  bObj:setEnable(true)
+  bObj:setTrigger(tell)
   ```
