@@ -10,7 +10,7 @@ function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 	if not ID then
 		local t = {}
 
-		for i = 1, getSET('maxPlayers') do
+		for i = 1, SET.maxPlayers do
 			t[i] = sF_HUD.new(i, text, x, y, hAlign, vAlign, size)
 		end
 
