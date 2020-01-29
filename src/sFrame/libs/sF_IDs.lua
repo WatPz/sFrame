@@ -3,7 +3,7 @@ local sF_IDs = {}
 function sF_IDs.new(nStart, nEnd, count)
 	local o = {}
 
-	if type(nStart) ~= 'number' or type(nEnd) ~= 'number' or type(count) ~= 'number' then
+	if type(nStart) ~= 'number' or type(nEnd) ~= 'number' or (type(count) ~= 'number' and type(count) ~= 'nil') then
 		return nil
 	end
 

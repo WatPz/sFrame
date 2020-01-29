@@ -1,8 +1,16 @@
 local sF_HUD = {}
+sF_HUD.hook = {}
 
 import('sF_IDs', 'sIDs')
-
 local IDs = sIDs.new(0, SET.maxHUD - 1)
+
+local HUDs = Array({})
+function sF_HUD.hook.join(p)
+	for _, obj in pairs(HUDs[p]) do
+		obj:setPos(math.ceil(player(p, 'screenw') / 2), math.ceil(player(p, 'screenh') / 2))
+		obj:show()
+	end
+end
 
 function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 	local o = {}
@@ -34,8 +42,8 @@ function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 	end
 
 	text = text or ''
-	x = x or math.ceil(player(ID, 'screenw') / 2)
-	y = y or math.ceil(player(ID, 'screenh') / 2)
+	x = x or (player(ID, 'exists') and math.ceil(player(ID, 'screenw') / 2) or 0)
+	y = y or (player(ID, 'exists') and math.ceil(player(ID, 'screenh') / 2) or 0)
 	hAlign = hAlign or 1
 	vAlign = vAlign or 1
 	size = size or 13
@@ -114,6 +122,8 @@ function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 
 		parse('hudtxtmove', ID, HUD_ID, 0, x, y)
 	end
+
+	table.insert(HUDs[ID], o)
 
 	return o
 end
