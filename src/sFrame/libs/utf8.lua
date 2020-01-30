@@ -263,12 +263,12 @@ end
 
 local _msg = msg
 function msg(...)
-	return _msg(utf8.convert('©255255255' .. table.concat({...}, '')))
+	return _msg(utf8.convert(table.concat({...}, '')))
 end
 
 local _msg2 = msg2
 function msg2(id, ...)
-	return _msg2(id, utf8.convert('©255255255' .. table.concat({...}, '')))
+	return _msg2(id, utf8.convert(table.concat({...}, '')))
 end
 
 local _concat = table.concat
