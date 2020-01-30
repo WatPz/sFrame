@@ -70,8 +70,11 @@ function sF_Menu.hook.menu(p, tName, b)
 			end
 
 			if b ~= 0 then
-				titles[tName].buttons[b].trigger(p)
-				menu(p, sF_Menu.getButtonStr(tName, p))
+				titles[tName].buttons[b].trigger(p, b, titles[tName].page[p], titles[tName].obj)
+
+				if titles[tName].again then
+					menu(p, sF_Menu.getButtonStr(tName, p))
+				end
 			end
 
 			return
@@ -102,7 +105,8 @@ function sF_Menu.new(tName, BIG)
 	titles[tName] = {
 		BIG = BIG,
 		page = Array(1),
-		buttons = {}
+		buttons = {},
+		again = true
 	}
 
 	local title = titles[tName]
@@ -113,6 +117,14 @@ function sF_Menu.new(tName, BIG)
 		end
 
 		titles[tName].BIG = mBIG
+	end
+
+	function o:setAgain(mAgain)
+		if type(mAgain) ~= 'boolean' and mAgain ~= nil then
+			return
+		end
+
+		titles[tName].again = mAgain
 	end
 
 	function o:insertButton(bName, bTrigger, bSupplement, bEnable, bPos)
@@ -237,6 +249,8 @@ function sF_Menu.new(tName, BIG)
 	function o:show(p)
 		menu(p, sF_Menu.getButtonStr(tName, p))
 	end
+
+	titles[tName].obj = o
 
 	return o
 end

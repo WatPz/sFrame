@@ -48,6 +48,20 @@
   ```
 
   [ **return** ] : **nil**
+  
+- **o:setAgain()**
+
+  设置 **o** 菜单 在触发后是否再次显示
+
+  **Boolean** `mAgain` -> 在触发后是否再次显示
+
+  （ 不为 **Boolean** 时，不变）
+
+  ```lua
+  o:setAgain(mAgain)
+  ```
+
+  [ **return** ] : **nil**
 
 - **o:insertButton()**
 
@@ -55,7 +69,7 @@
 
   **String** `bName` -> 按钮名字
 
-  **Function** `bTrigger` -> 按钮触发函数（传入参数 **玩家ID** ）
+  **Function** `bTrigger` -> 按钮触发函数（传入参数 **玩家ID, 按钮ID, 页码, 菜单对象** ）
 
   **Function / Boolean** `bSupplement` -> 按钮补充（ 为 **Function** 时，传入参数 **玩家ID** ）
 

@@ -46,8 +46,24 @@
   ```lua
   o:setBIG(mBIG)
   ```
+  
+- **o:setAgain()**
+
+  Set whether the **o** menu will be displayed again after triggering
+
+  **Boolean** `mAgain` -> Whether display again after triggering
+
+  ( It doesn't change if not **Boolean** or null )
+
+  ```lua
+  o:setAgain(mAgain)
+  ```
 
   [ **return** ] : **nil**
+  ```
+  
+  [ **return** ] : **nil**
+  ```
 
 - **o:insertButton()**
 
