@@ -84,9 +84,16 @@ function remove(name)
 	_G[name] = nil
 end
 
+local iPATH = 'sys/lua/sFrame/libs/'
+function setImportPATH(PATH)
+	if type(PATH) == 'string' and PATH ~= '' then
+		iPATH = PATH
+	end
+end
+
 -- 定义 "import" 函数来导入LIB § Define the "import" function to import the LIB
 function import(proJname, alias)
-	local PATH = 'sys/lua/sFrame/libs/' .. proJname .. '.lua'
+	local PATH = iPATH .. proJname .. '.lua'
 	local name = alias or proJname
 
 	if _G[name] then
