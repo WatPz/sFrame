@@ -4,14 +4,14 @@ sF_Menu.hook = {}
 local titles = {}
 
 function sF_Menu.getButtonStr(tName, p)
-	if type(tName) ~= 'string' or type(p) ~= 'number' or (p < 1 or p > SET.maxPlayers) then
-		return
+	if type(tName) ~= 'string' or not tonumber(p) or (p < 1 or p > SET.maxPlayers) then
+		return nil, 1
 	end
 
 	local title = titles[tName]
 
 	if not title then
-		return
+		return nil, 2
 	end
 
 	local str = tName .. (title.BIG and '@b' or '') .. ','
@@ -129,23 +129,23 @@ function sF_Menu.new(tName, BIG)
 
 	function o:insertButton(bName, bTrigger, bSupplement, bEnable, bPos)
 		if type(bName) ~= 'string' or bName == '' then
-			return
+			return nil, 1
 		end
 
 		if type(bTrigger) ~= 'function' and bTrigger ~= nil then
-			return
+			return nil, 2
 		end
 
 		if type(bSupplement) ~= 'function' and type(bSupplement) ~= 'string' and bSupplement ~= nil then
-			return
+			return nil, 3
 		end
 
 		if type(bEnable) ~= 'function' and type(bEnable) ~= 'boolean' and bEnable ~= nil then
-			return
+			return nil, 4
 		end
 
-		if type(bPos) ~= 'number' and bPos ~= nil then
-			return
+		if not tonumber(bPos) and bPos ~= nil then
+			return nil, 5
 		end
 
 		bEnable = (bEnable == nil and true or bEnable)
@@ -166,6 +166,8 @@ function sF_Menu.new(tName, BIG)
 		else
 			table.insert(title.buttons, b)
 		end
+
+		return true
 	end
 
 	function o:removeButton(pos)
@@ -241,6 +243,18 @@ function sF_Menu.new(tName, BIG)
 			end
 
 			b.enable = bEnable or b.enable
+		end
+
+		function bObj:setPos(bPos)
+			if type(bPos) ~= 'number' then
+				return
+			end
+
+			if bPos < 0 then
+				bPos = #title.buttons + bPos + 1
+			end
+
+			table.insert(title.buttons, bPos, table.remove(title.buttons, pos))
 		end
 
 		return bObj
