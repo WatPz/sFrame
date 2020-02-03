@@ -1,4 +1,5 @@
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
+
 - **sMenu.new()**
 
   创建一个 **sF_Menu** 对象：
@@ -27,7 +28,8 @@
 
   **Number** `p` -> 玩家ID
 
-  （任意参数 <u>类型不对</u> 时，返回 **nil** ）
+  （任意参数 <u>类型不对</u> 时，返回 **nil, 1** ）
+  （菜单 <u>不存在</u> 时，返回 **nil, 2** ）
 
   ```lua
   sF_Menu.getButtonStr(tName, p)
@@ -80,6 +82,8 @@
   （ 为 <u>负数</u> 时，从后往前数 ）
 
   （ 任意参数 <u>类型不对</u> 时，不会插入按钮 ）
+
+  （任意参数 <u>类型不对</u> 时，返回 **nil, 参数位置** ）
 
   ```lua
   o:insertButton(bName, bTrigger, bSupplement, bEnable, bPos)
@@ -223,7 +227,30 @@
   
   [ **return** ] : **nil**
 
+  获取 **bObj** 按钮的状态和 <u>类型</u>（ **Function / Boolean** ）
+
+  ```lua
+  bObj:getEnable()
+  ```
+
+  [ **return** ] : **String, String**
+
+- **bObj:setPos()**
+
+  设置 **bObj** 按钮的位置
+
+  **Number** `bPos` -> 按钮位置
+  
+  （ 不为 **Number** 时不变 ）
+
+  ```lua
+  bObj:setPos(bPos)
+  ```
+  
+  [ **return** ] : **nil**
+
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">例子</p>
+
 - 创建一个主菜单
 
   并设置 <u>b1</u> ， <u>b2</u> 和 <u>b3</u> 三个按钮

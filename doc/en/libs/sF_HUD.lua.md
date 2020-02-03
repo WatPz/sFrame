@@ -1,4 +1,5 @@
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
+
 - **sHUD.new()**
 
   Create a **sF_HUD** object:
@@ -14,22 +15,6 @@
   **Number** `x` -> The y coordinate *defaults to half the width of the player's screen*
 
   **Number** `y` -> The y coordinate *defaults to half the height of the player's screen*
-
-  **Number** `hAlign` -> The horizontal alignment mode *defaults to 1*
-
-  **Number** `vAlign` -> The vertical alignment mode *defaults to 1*
-
-  ( <u>Horizontal alignment</u> and <u>Vertical alignment</u> for details *Alignment Mode* )
-
-  **Number** `size` -> The text size *defaults to 13*
-
-  **Table** `color` -> The text color ( *RGB* format )
-
-  ( <u>Text color</u> for details *Color* )
-
-  **Number** `alpha` -> The text transparency *defaults to 1.0*
-
-  ( 0.0 ~ 1.0 corresponds to 0% ~ 100% )
 
   ```lua
   local o = sHUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
@@ -91,6 +76,20 @@
 
   [ **return** ] : **nil**
 
+- **o:setPos()**
+
+  Set the text coordinates of **o**
+
+  **Number** hX-> The x coordinate ( It doesn't change if it's not **String** or **Number** )
+
+  **Number** hY-> The y coordinate ( It doesn't change if it's not **String** or **Number** )
+
+  ```lua
+  o:setPos(hX, hY)
+  ```
+
+  [ **return** ] : **nil**
+
 - **o:setHAlign()**
 
   Set the horizontal alignment mode of **o**
@@ -127,20 +126,6 @@
 
   [ **return** ] : **nil**
 
-- **o:setAlpha()**
-
-  Set the text transparency of **o**
-
-  **Number** hAlpha-> The text transparency ( It doesn't change if it's not **String** or **Number** )
-
-  （ 0.0 ~ 1.0 对应 0% ~ 100% ）
-
-  ```lua
-  o:setAlpha(hAlpha)
-  ```
-
-  [ **return** ] : **nil**
-
 - **o:setColor()**
 
   Set the text color of **o**
@@ -155,21 +140,22 @@
 
   [ **return** ] : **nil**
 
-- **o:setPos()**
+- **o:setAlpha()**
 
-  Set the text coordinates of **o**
+  Set the text transparency of **o**
 
-  **Number** hX-> The x coordinate ( It doesn't change if it's not **String** or **Number** )
+  **Number** hAlpha-> The text transparency ( It doesn't change if it's not **String** or **Number** )
 
-  **Number** hY-> The y coordinate ( It doesn't change if it's not **String** or **Number** )
+  ( 0.0 ~ 1.0 corresponds to 0% ~ 100% )
 
   ```lua
-  o:setPos(hX, hY)
+  o:setAlpha(hAlpha)
   ```
 
   [ **return** ] : **nil**
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">Supplement</p>
+
 - Alignment Mode：
 
   - Horizontal alignment：
@@ -197,12 +183,13 @@
   [ **Key** `blue` -> The blue value *defaults to 255* ]
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">Example</p>
+
 - Create an **sF_HUD** object for player 1
 
   And change its color and font size
 
   Finally, show the text to the player
-  
+
   ```lua
   local HUD = sHUD.new(1, "Hello, Player 1!")
   -- set the color to white

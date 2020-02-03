@@ -1,4 +1,5 @@
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
+
 - **sHUD.new()**
 
   创建一个 **sF_HUD** 对象：
@@ -15,24 +16,8 @@
 
   **Number** `y` -> y坐标 *默认值为玩家屏幕高度一半*
 
-  **Number** `hAlign` -> 水平对齐模式 *默认值为1*
-
-  **Number** `vAlign` -> 垂直对齐模式 *默认值为1*
-
-  （ <u>水平对齐</u> 和 <u>垂直对齐</u> 详见 *对齐模式* ）
-
-  **Number** `size` -> 文本大小 *默认值为13*
-
-  **Table** `color` -> 文本颜色 （ *RGB* 格式）
-
-  （ <u>文本颜色</u> 详见 *颜色 *）
-
-  **Number** `alpha` -> 文本透明度 *默认值为1.0*
-
-  （ 0.0 ~ 1.0 对应 0% ~ 100% ）
-
   ```lua
-  local o = sHUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
+  local o = sHUD.new(ID, text, x, y)
 
   -- Example --
   local one = sHUD.new(2, "Player 2 can see this message!")
@@ -91,6 +76,20 @@
 
   [ **return** ] : **nil**
 
+- **o:setPos()**
+
+  设置 **o** 的文本坐标
+
+  **Number** hX-> x坐标（ 不为 **String** 或 **Number** 时不变 ）
+
+  **Number** hY-> y坐标（ 不为 **String** 或 **Number** 时不变 ）
+
+  ```lua
+  o:setPos(hX, hY)
+  ```
+
+  [ **return** ] : **nil**
+
 - **o:setHAlign()**
 
   设置 **o** 的水平对齐模式
@@ -127,20 +126,6 @@
 
   [ **return** ] : **nil**
 
-- **o:setAlpha()**
-
-  设置 **o** 的文本透明度
-
-  **Number** hAlpha-> 文本透明度（ 不为 **String** 或 **Number** 时不变 ）
-
-  （ 0.0 ~ 1.0 对应 0% ~ 100% ）
-
-  ```lua
-  o:setAlpha(hAlpha)
-  ```
-
-  [ **return** ] : **nil**
-
 - **o:setColor()**
 
   设置 **o** 的文本颜色
@@ -155,21 +140,22 @@
 
   [ **return** ] : **nil**
 
-- **o:setPos()**
+- **o:setAlpha()**
 
-  设置 **o** 的文本坐标
+  设置 **o** 的文本透明度
 
-  **Number** hX-> x坐标（ 不为 **String** 或 **Number** 时不变 ）
+  **Number** hAlpha-> 文本透明度（ 不为 **String** 或 **Number** 时不变 ）
 
-  **Number** hY-> y坐标（ 不为 **String** 或 **Number** 时不变 ）
+  （ 0.0 ~ 1.0 对应 0% ~ 100% ）
 
   ```lua
-  o:setPos(hX, hY)
+  o:setAlpha(hAlpha)
   ```
 
   [ **return** ] : **nil**
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">补充</p>
+
 - 对齐模式：
 
   - 水平对齐：
@@ -197,12 +183,13 @@
   [ **Key** `blue` -> 蓝色值 *默认值为255* ]
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">例子</p>
+
 - 创建一个针对玩家 1 的 **sF_HUD** 对象
 
   并修改它的颜色和字体大小
 
   最后展示给玩家
-  
+
   ```lua
   local HUD = sHUD.new(1, "Hello, Player 1!")
   -- set the color to white

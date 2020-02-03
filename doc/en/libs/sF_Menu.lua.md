@@ -1,4 +1,5 @@
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
+
 - **sMenu.new()**
 
   Create a **sF_Menu** object:
@@ -28,6 +29,7 @@
   **Number** `p` -> The player ID
 
   ( return **nil** if any parameter <u>is of the wrong type</u> )
+  ( When the menu <u>does not exist</u> , return to **nil, 2** )
 
   ```lua
   sF_Menu.getButtonStr(tName, p)
@@ -82,6 +84,8 @@
   ( count backwards if it's a <u>negative</u> number )
 
   ( won't insert if any parameter <u>is of the wrong type</u> )
+
+  ( return **nil, THE PARAMETER POSITION** if any parameter <u>is of the wrong type</u> )
 
   ```lua
   o:insertButton(bName, bTrigger, bSupplement, bEnable, bPos)
@@ -213,19 +217,30 @@
 
 - **bObj:setEnable()**
 
-  Set the enable state of the **bObj** button
-
-  **Function / Boolean** `bSupplement` -> The button enable state
-
-  ( It doesn't change if not **Function** or **Boolean** )
+  Get the enable state and the <u>type</u> of the **bObj** button ( **Function / Boolean** )
 
   ```lua
-  bObj:setEnable(bEnable)
+  bObj:getEnable()
+  ```
+
+  [ **return** ] : **String, String**
+
+- **bObj:setPos()**
+
+  Set the position of the **bObj** button
+
+  **Number** `bPos` -> The button position
+
+  ( It doesn't change if not **Number** )
+
+  ```lua
+  bObj:setPos(bPos)
   ```
 
   [ **return** ] : **nil**
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">Example</p>
+
 - Create a main menu
 
   And set the <u>b1</u> , <u>b2</u> and <u>b3</u> buttons

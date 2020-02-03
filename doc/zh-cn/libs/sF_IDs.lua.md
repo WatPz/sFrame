@@ -1,4 +1,5 @@
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
+
 - **sIDs.new()**
 
   创建一个 **sF_IDs** 对象：
@@ -44,6 +45,7 @@
   [ **return** ] : 参数错误时返回 **nil** ，否则返回 **true**
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">例子</p>
+
 - 创建一个针对 3 个玩家 ，范围是 1~100 的 **IDs**
 
   ```lua

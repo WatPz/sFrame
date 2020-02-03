@@ -1,4 +1,5 @@
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
+
 - **sIDs.new()**
 
   Create a **sF_IDs** object:
@@ -44,6 +45,7 @@
   [ **return** ] : Returns **nil** when the parameter is wrong, otherwise returns **true**
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">例子</p>
+
 - Create a **IDs** for 3 players, ranging from 1 to 100
 
   ```lua
@@ -57,5 +59,3 @@
   -- some code
   IDs:free(1, ID)
   ```
-
-
