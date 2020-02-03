@@ -65,9 +65,9 @@
 
   导入指定 **库**
 
-  **String** `proJname` -> 库名称（文件名）
+  **String** `proJname` -> 库名称（ 文件名）
 
-  **String** `alias` -> 库别名（对象名）
+  **String** `alias` -> 库别名（ 对象名）
 
   ```lua
   import(proJname, alias)

@@ -65,9 +65,9 @@ This <u>plugin</u> has many custom functions built in for **lib **, **do not mod
 
   Import the specified **library**
 
-  **String** `proJname` -> The library name（The file name）
+  **String** `proJname` -> The library name（ The file name）
 
-  **String** `alias` -> The library alias（The object name）
+  **String** `alias` -> The library alias（ The object name）
 
   ```lua
   import(proJname, alias)

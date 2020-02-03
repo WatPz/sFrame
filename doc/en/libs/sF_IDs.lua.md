@@ -12,6 +12,8 @@
 
   ( Generally used to record *players* )
 
+  ( won't insert if any parameter <u>is of the wrong type</u> )
+
   ```lua
   local o = sIDs.new(nStart, nEnd, count)
   ```
@@ -28,7 +30,7 @@
   o:get(i)
   ```
 
-  [ **return** ] : A separate ID (returns **nil** when the limit is exceeded)
+  [ **return** ] : A separate ID ( returns **nil** when the limit is exceeded )
 
 - **o:free()**
 

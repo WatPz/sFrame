@@ -18,7 +18,7 @@
   local o = sMenu.new(tName, BIG)
   ```
 
-  [ **return** ] : 对象 **o** （特殊情况如上）
+  [ **return** ] : 对象 **o** （ 特殊情况如上）
 
 - **sMenu.getButtonStr()**
 
@@ -28,8 +28,8 @@
 
   **Number** `p` -> 玩家ID
 
-  （任意参数 <u>类型不对</u> 时，返回 **nil, 1** ）
-  （菜单 <u>不存在</u> 时，返回 **nil, 2** ）
+  （ 任意参数 <u>类型不对</u> 时，返回 **nil, 1** ）
+  （ 菜单 <u>不存在</u> 时，返回 **nil, 2** ）
 
   ```lua
   sF_Menu.getButtonStr(tName, p)
@@ -71,7 +71,7 @@
 
   **String** `bName` -> 按钮名字
 
-  **Function** `bTrigger` -> 按钮触发函数（传入参数 **玩家ID, 按钮ID, 页码, 菜单对象** ）
+  **Function** `bTrigger` -> 按钮触发函数（ 传入参数 **玩家ID, 按钮ID, 页码, 菜单对象** ）
 
   **Function / Boolean** `bSupplement` -> 按钮补充（ 为 **Function** 时，传入参数 **玩家ID** ）
 
@@ -83,7 +83,7 @@
 
   （ 任意参数 <u>类型不对</u> 时，不会插入按钮 ）
 
-  （任意参数 <u>类型不对</u> 时，返回 **nil, 参数位置** ）
+  （ 任意参数 <u>类型不对</u> 时，返回 **nil, 参数位置** ）
 
   ```lua
   o:insertButton(bName, bTrigger, bSupplement, bEnable, bPos)

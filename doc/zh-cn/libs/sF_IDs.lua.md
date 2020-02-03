@@ -10,7 +10,9 @@
 
   **Number** `count` -> 副本的数量 *默认值参考Array()*
 
-  （ 般用于记录 *玩家* ）
+  （ 一般用于记录 *玩家* ）
+
+  （ 任意参数 <u>类型不对</u> 时，返回 **nil, 参数位置** ）
 
   ```lua
   local o = sIDs.new(nStart, nEnd, count)
