@@ -12,8 +12,20 @@ function sF_HUD.hook.join(p)
 	end
 end
 
-function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
+function sF_HUD.new(ID, text, x, y)
 	local o = {}
+
+	if type(text) ~= 'string' and type(text) ~= 'number' and text ~= nil then
+		return nil, 2
+	end
+
+	if not tonumber(x) and x ~= nil then
+		return nil, 3
+	end
+
+	if not tonumber(y) and y ~= nil then
+		return nil, 4
+	end
 
 	if not ID then
 		local t = {}
@@ -27,33 +39,39 @@ function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 		local t = {}
 
 		for _, i in ipairs(ID) do
-			if type(i) == 'number' then
-				t[i] = sF_HUD.new(i, text, x, y, hAlign, vAlign, size)
+			if tonumber(i) then
+				t[i] = sF_HUD.new(tonumber(i), text, x, y, hAlign, vAlign, size)
 			end
 		end
 
 		return t
+	elseif not tonumber(ID) then
+		return nil, 1
 	end
 
-	local HUD_ID = IDs:get(ID)
+	ID = tonumber(ID)
+
+	local HUD_ID = IDs:get()
 
 	if not HUD_ID then
-		return
+		return nil, 0
 	end
 
 	text = text or ''
 	x = x or (player(ID, 'exists') and math.ceil(player(ID, 'screenw') / 2) or 0)
 	y = y or (player(ID, 'exists') and math.ceil(player(ID, 'screenh') / 2) or 0)
-	hAlign = hAlign or 1
-	vAlign = vAlign or 1
-	size = size or 13
 
-	color = (type(color) ~= 'table' and {} or color)
-	color.red = color.red or 255
-	color.green = color.green or 255
-	color.blue = color.blue or 255
+	local hAlign = hAlign or 1
+	local vAlign = vAlign or 1
+	local size = size or 13
 
-	alpha = alpha or 1.0
+	local color = {
+		red = 255,
+		green = 255,
+		blue = 255
+	}
+
+	local alpha = 1.0
 
 	function o:show(hAlpha)
 		parse('hudtxt2', ID, HUD_ID, '"' .. text .. '"', x, y, hAlign, vAlign, size)
@@ -74,12 +92,18 @@ function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 	end
 
 	function o:setText(hText)
-		local t = type(hText)
-		if t == 'string' or t == 'number' then
+		if type(hText) == 'string' or type(hText) == 'number' then
 			text = tostring(hText)
 		end
 
 		self:show()
+	end
+
+	function o:setPos(hX, hY)
+		x = tonumber(hX) or x
+		y = tonumber(hY) or y
+
+		parse('hudtxtmove', ID, HUD_ID, 0, x, y)
 	end
 
 	function o:setHAlign(align)
@@ -100,12 +124,6 @@ function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 		self:show()
 	end
 
-	function o:setAlpha(hAlpha)
-		alpha = tonumber(hAlpha) or alpha
-
-		parse('hudtxtalphafade', ID, HUD_ID, 0, alpha)
-	end
-
 	function o:setColor(hColor)
 		if type(hColor) == 'table' then
 			color.red = tonumber(hColor.red) or color.red
@@ -116,11 +134,10 @@ function sF_HUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
 		parse('hudtxtcolorfade', ID, HUD_ID, 0, color.red, color.green, color.blue)
 	end
 
-	function o:setPos(hX, hY)
-		x = tonumber(hX) or x
-		y = tonumber(hY) or y
+	function o:setAlpha(hAlpha)
+		alpha = tonumber(hAlpha) or alpha
 
-		parse('hudtxtmove', ID, HUD_ID, 0, x, y)
+		parse('hudtxtalphafade', ID, HUD_ID, 0, alpha)
 	end
 
 	table.insert(HUDs[ID], o)
