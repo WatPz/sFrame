@@ -1,5 +1,4 @@
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
-
 - **sMenu.new()**
 
   创建一个 **sF_Menu** 对象：
@@ -12,13 +11,13 @@
 
   **Boolean** `BIG` -> 设置为大菜单
 
-  （ 如果不为 **Boolean** ， 返回 **nil, 3**）
+  （ 如果不为 **Boolean** ， 返回 **nil, 3** ）
 
   ```lua
   local o = sMenu.new(tName, BIG)
   ```
 
-  [ **return** ] : 对象 **o** （ 特殊情况如上）
+  [ **return** ] : 对象 **o** （ 特殊情况如上 ）
 
 - **sMenu.getButtonStr()**
 
@@ -36,6 +35,18 @@
   ```
 
   [ **return** ] : **String**
+
+- **o:show()**
+
+  将 **o** 菜单展示给一个玩家看
+
+  **Number** `p` -> 玩家ID
+
+  ```lua
+  o:show(p)
+  ```
+  
+  [ **return** ] : **nil**
   
 - **o:setBIG()**
 
@@ -43,7 +54,7 @@
 
   **Boolean** `mBIG` -> 是否开启大菜单模式
 
-  （ 不为 **Boolean** 时，不变）
+  （ 不为 **Boolean** 时，不变 ）
 
   ```lua
   o:setBIG(mBIG)
@@ -57,23 +68,47 @@
 
   **Boolean** `mAgain` -> 在触发后是否再次显示
 
-  （ 不为 **Boolean** 时，不变）
+  （ 不为 **Boolean** 时，不变 ）
 
   ```lua
   o:setAgain(mAgain)
   ```
 
   [ **return** ] : **nil**
+  
+- **o:setGlobalTrigger()**
 
+  创建 **o** 对象的全局 **Trigger** ，任何没有 **bTrigger** 触发函数的 **bObj** 将会使用此函数
+
+  **Function** `gTrigger` -> 全局按钮触发函数
+
+  （ 不为 **Function** 时，不变 ）
+
+  ```lua
+  o:setGlobalTrigger(gTrigger)
+  ```
+
+  [ **return** ] : **nil**
+  
+- **o:getGlobalTrigger()**
+
+  获取 **o** 对象的全局 **Trigger**
+
+  ```lua
+o:getGlobalTrigger()
+  ```
+
+  [ **return** ] : **Function**
+  
 - **o:insertButton()**
 
   在 **o** 菜单中插入一个按钮
 
   **String** `bName` -> 按钮名字
 
-  **Function** `bTrigger` -> 按钮触发函数（ 传入参数 **玩家ID, 按钮ID, 页码, 菜单对象** ）
+  **Function** `bTrigger` -> 按钮触发函数（ 传入参数 **玩家ID, 按钮总ID, 菜单对象** ）
 
-  **Function / Boolean** `bSupplement` -> 按钮补充（ 为 **Function** 时，传入参数 **玩家ID** ）
+  **Function / String** `bSupplement` -> 按钮补充（ 为 **Function** 时，传入参数 **玩家ID** ）
 
   **Function / Boolean** `bEnable` -> 按钮状态（ 为 **Function** 时，传入参数 **玩家ID** ）
 
@@ -118,18 +153,6 @@
   ```
 
   [ **return** ] : 返回对象 **bObj**
-
-- **o:show()**
-
-  将 **o** 菜单展示给一个玩家看
-
-  **Number** `p` -> 玩家ID
-
-  ```lua
-  o:show(p)
-  ```
-  
-  [ **return** ] : **nil**
 
 - **bObj:getName()**
 
@@ -250,7 +273,6 @@
   [ **return** ] : **nil**
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">例子</p>
-
 - 创建一个主菜单
 
   并设置 <u>b1</u> ， <u>b2</u> 和 <u>b3</u> 三个按钮

@@ -1,12 +1,11 @@
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
-
 - **sMenu.new()**
 
   Create a **sF_Menu** object:
 
   **String** `tName` -> The menu title
 
-  ( return **nil, 1** if not **String** or null )
+  ( return **nil, 1** if not **String** )
 
   ( return **nil, 2** if <u>title</u> has <u>been used</u> )
 
@@ -37,17 +36,31 @@
 
   [ **return** ] : **String**
 
+- **o:show()**
+
+  Show the **o** menu to a player
+
+  **Number** `p` -> The player ID
+
+  ```lua
+  o:show(p)
+  ```
+
+  [ **return** ] : **nil**
+
 - **o:setBIG()**
 
   Set the large menu mode of the **o** menu
 
   **Boolean** `mBIG` -> Whether to turn on the large menu mode
 
-  ( It doesn't change if not **Boolean** or null )
+  ( It doesn't change if not **Boolean** )
 
   ```lua
   o:setBIG(mBIG)
   ```
+  
+  [ **return** ] : **nil**
   
 - **o:setAgain()**
 
@@ -55,27 +68,47 @@
 
   **Boolean** `mAgain` -> Whether display again after triggering
 
-  ( It doesn't change if not **Boolean** or null )
+  ( It doesn't change if not **Boolean** )
 
   ```lua
   o:setAgain(mAgain)
   ```
 
   [ **return** ] : **nil**
-  ```
   
-  [ **return** ] : **nil**
+- **o:setGlobalTrigger()**
+
+  Create a global **Trigger** of the **o** object, which will be used by any **bObj** without **bTrigger** trigger function
+
+  **Function** `gTrigger` -> The global button trigger function
+
+  ( It doesn't change if not **Function** )
+
+  ```lua
+  o:setGlobalTrigger(gTrigger)
   ```
 
+  [ **return** ] : **nil**
+  
+- **o:getGlobalTrigger()**
+
+  Get the global **Trigger** of **o** object
+
+  ```lua
+o:getGlobalTrigger()
+  ```
+
+  [ **return** ] : **Function**
+  
 - **o:insertButton()**
 
   Insert a button in the **o** menu
 
   **String** `bName` -> The button name
 
-  **Function** `bTrigger` -> The button trigger function ( pass in the parameter **Player ID** )
+  **Function** `bTrigger` -> The button trigger function ( pass in the parameter **Player ID, total button ID, menu object** )
 
-  **Function / Boolean** `bSupplement` -> The button supplement ( When **Function**, pass in the parameter **Player ID** )
+  **Function / String** `bSupplement` -> The button supplement ( When **Function**, pass in the parameter **Player ID** )
 
   **Function / Boolean** `bEnable` -> The button state ( When **Function**, pass in the parameter **Player ID** )
 
@@ -121,18 +154,6 @@
 
   [ **return** ] : The Object **bObj**
 
-- **o:show()**
-
-  Show the **o** menu to a player
-
-  **Number** `p` -> The player ID
-
-  ```lua
-  o:show(p)
-  ```
-
-  [ **return** ] : **nil**
-
 - **bObj:getName()**
 
   Get the name of the **bObj** button
@@ -149,7 +170,7 @@
 
   **String** `bName` -> The button name
 
-  ( It doesn't change if not **String** or null )
+  ( It doesn't change if not **String** )
 
   ```lua
   bObj:setName(bName)
@@ -240,7 +261,6 @@
   [ **return** ] : **nil**
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">Example</p>
-
 - Create a main menu
 
   And set the <u>b1</u> , <u>b2</u> and <u>b3</u> buttons
