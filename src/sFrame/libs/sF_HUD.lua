@@ -27,31 +27,36 @@ function sF_HUD.new(ID, text, x, y)
 		return nil, 4
 	end
 
-	if not ID then
-		local t = {}
+	if not ID or type(ID) == 'table' then
+		local o = {}
 
-		for i = 1, SET.maxPlayers do
-			t[i] = sF_HUD.new(i, text, x, y, hAlign, vAlign, size)
-		end
+		ID = ID or Range(1, SET.maxPlayers)
 
-		return t
-	elseif type(ID) == 'table' then
-		local t = {}
-
-		for _, i in ipairs(ID) do
+		for _, i in pairs(ID) do
 			if tonumber(i) then
-				t[i] = sF_HUD.new(tonumber(i), text, x, y, hAlign, vAlign, size)
+				o[i] = sF_HUD.new(tonumber(i), text, x, y, hAlign, vAlign, size)
 			end
 		end
 
-		return t
+		return setmetatable(
+			o,
+			{
+				__index = function(_, k)
+					return function(...)
+						for _, obj in pairs(o) do
+							obj[k](...)
+						end
+					end
+				end
+			}
+		)
 	elseif not tonumber(ID) then
 		return nil, 1
 	end
 
 	ID = tonumber(ID)
 
-	local HUD_ID = IDs:get()
+	local HUD_ID = IDs:get(ID)
 
 	if not HUD_ID then
 		return nil, 0

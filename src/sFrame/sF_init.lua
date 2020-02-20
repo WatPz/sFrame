@@ -114,7 +114,9 @@ function spairs(t)
 	local a = {}
 
 	for str in pairs(t) do
-		a[#a + 1] = str
+		if type(str) == 'string' then
+			a[#a + 1] = str
+		end
 	end
 
 	table.sort(a)

@@ -61,18 +61,24 @@ function sF_Menu.getButtonStr(tName, p)
 end
 
 function sF_Menu.hook.menu(p, tName, b)
-	for str, t in spairs(titles) do
+	for str, menuObj in spairs(titles) do
 		if str == tName then
 			if b == 8 then
-				t.page[p] = t.page[p] - 1
+				menuObj.page[p] = menuObj.page[p] - 1
 			elseif b == 9 then
-				t.page[p] = t.page[p] + 1
+				menuObj.page[p] = menuObj.page[p] + 1
 			end
 
 			if b ~= 0 then
-				titles[tName].buttons[b].trigger(p, b, titles[tName].page[p], titles[tName].obj)
+				local ID = b + (menuObj.page[p] - 1) * 7
 
-				if titles[tName].again then
+				if menuObj.buttons[b].trigger then
+					menuObj.buttons[b].trigger(p, ID, menuObj.obj)
+				elseif menuObj.trigger then
+					menuObj.trigger(p, ID, menuObj.obj)
+				end
+
+				if menuObj.again then
 					menu(p, sF_Menu.getButtonStr(tName, p))
 				end
 			end
@@ -106,10 +112,14 @@ function sF_Menu.new(tName, BIG)
 		BIG = BIG,
 		page = Array(1),
 		buttons = {},
-		again = true
+		again = false
 	}
 
 	local title = titles[tName]
+
+	function o:show(p)
+		menu(p, sF_Menu.getButtonStr(tName, p))
+	end
 
 	function o:setBIG(mBIG)
 		if type(mBIG) ~= 'boolean' and mBIG ~= nil then
@@ -125,6 +135,18 @@ function sF_Menu.new(tName, BIG)
 		end
 
 		titles[tName].again = mAgain
+	end
+
+	function o:setGlobalTrigger(gTrigger)
+		if type(bTrigger) ~= 'function' and bTrigger ~= nil then
+			return
+		end
+
+		titles[tName].trigger = gTrigger
+	end
+
+	function o:getGlobalTrigger()
+		return titles[tName].trigger
 	end
 
 	function o:insertButton(bName, bTrigger, bSupplement, bEnable, bPos)
@@ -258,10 +280,6 @@ function sF_Menu.new(tName, BIG)
 		end
 
 		return bObj
-	end
-
-	function o:show(p)
-		menu(p, sF_Menu.getButtonStr(tName, p))
 	end
 
 	titles[tName].obj = o

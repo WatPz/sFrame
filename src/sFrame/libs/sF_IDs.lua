@@ -20,7 +20,7 @@ function sF_IDs.new(nStart, nEnd, count)
 	local max = nEnd - nStart + 1
 
 	function o:get(i)
-		if used[i] >= max or type(i) ~= 'number' then
+		if type(i) ~= 'number' or used[i] >= max then
 			return nil
 		end
 
