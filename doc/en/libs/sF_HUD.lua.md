@@ -1,14 +1,15 @@
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
-
 - **sHUD.new()**
 
   Create a **sF_HUD** object:
 
   **Number** `ID` -> The player id
 
-  ( If **nil** , return a **Table** that index 1 to 32 is **sF_HUD** object )
+  ( If **nil** , return a **total sF_HUD** object that index 1 to 32 is **sF_HUD** object )
 
-  ( If **Table** , the index <u>corresponding</u> to all the <u>numbers</u> in the return table is a table of **sF_HUD** object )
+  ( If **Table** , the index <u>corresponding</u> to all the <u>numbers</u> in the return table is a **total sF_HUD** object of **sF_HUD** object )
+
+  ( all **remeber functions** of **o** object, can be called by the **total sF_HUD** object, and the datas of all **sF_HUD** object will be modified after calling)
 
   **String** `text` -> The text *defaults to an empty string*
 
@@ -18,14 +19,14 @@
 
   ```lua
   local o = sHUD.new(ID, text, x, y, hAlign, vAlign, size, color, alpha)
-
+  
   -- Example --
   local one = sHUD.new(2, "Player 2 can see this message!")
   one:show()
-
+  
   local all = sHUD.new(nil, "You all can see this message!")
   all:show()
-
+  
   local some = sHUD.new({1, 9, 26}, "Players 1, 9 and 26 can see this message!")
   some:show()
   ```
@@ -155,7 +156,6 @@
   [ **return** ] : **nil**
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">Supplement</p>
-
 - Alignment Mode：
 
   - Horizontal alignment：
@@ -183,7 +183,6 @@
   [ **Key** `blue` -> The blue value *defaults to 255* ]
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">Example</p>
-
 - Create an **sF_HUD** object for player 1
 
   And change its color and font size

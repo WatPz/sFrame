@@ -1,14 +1,15 @@
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">API</p>
-
 - **sHUD.new()**
 
   创建一个 **sF_HUD** 对象：
 
   **Number** `ID` -> 玩家id
 
-  （ 如果为 **nil** ，那么返回一个1~32索引都为 **sF_HUD** 对象的 **Table** ）
+  （ 如果为 **nil** ，那么返回一个1~32索引都为 **sF_HUD** 对象的 **sF_HUD** 总对象 ）
 
-  （ 如果为 **Table** ，那么返回 `ID` 中所有 <u>数字</u> <u>对应</u> 索引都为 **sF_HUD** 对象的 **Table** ）
+  （ 如果为 **Table** ，那么返回 `ID` 中所有 <u>数字</u> <u>对应</u> 索引都为 **sF_HUD** 对象的 **sF_HUD** **总** 对象 ）
+
+  （ **o** 对象所有 **成员函数** ，都可被 **sF_HUD** **总** 对象调用，调用后将 **修改** 所有 **sF_HUD** 子对象的数据 ）
 
   **String** `text` -> 文本 *默认值为空字符串*
 
@@ -18,14 +19,14 @@
 
   ```lua
   local o = sHUD.new(ID, text, x, y)
-
+  
   -- Example --
   local one = sHUD.new(2, "Player 2 can see this message!")
   one:show()
-
+  
   local all = sHUD.new(nil, "You all can see this message!")
   all:show()
-
+  
   local some = sHUD.new({1, 9, 26}, "Players 1, 9 and 26 can see this message!")
   some:show()
   ```
@@ -155,7 +156,6 @@
   [ **return** ] : **nil**
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">补充</p>
-
 - 对齐模式：
 
   - 水平对齐：
@@ -183,7 +183,6 @@
   [ **Key** `blue` -> 蓝色值 *默认值为255* ]
 
 <p align="center", style="font-family: Helvetica, Open Sans; font-size: 22px; color: #64dcf5">例子</p>
-
 - 创建一个针对玩家 1 的 **sF_HUD** 对象
 
   并修改它的颜色和字体大小
