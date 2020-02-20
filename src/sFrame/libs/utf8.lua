@@ -1,4 +1,4 @@
-utf8 = {}
+local utf8 = {}
 
 local shift_6 = 2 ^ 6
 local shift_12 = 2 ^ 12
